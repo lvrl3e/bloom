@@ -1,0 +1,16 @@
+<svg width="720" height="200" viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="200" rx="24" fill="#0D0D0F"/>
+
+  <!-- Bloom mark: same 5-petal geometry as lib/widgets/bloom_logo.dart -->
+  <g transform="translate(100,100)">
+    <circle cx="35.2" cy="0" r="38.4" fill="#E85D9E" fill-opacity="0.85"/>
+    <circle cx="10.88" cy="33.47" r="38.4" fill="#E85D9E" fill-opacity="0.85"/>
+    <circle cx="-28.48" cy="20.70" r="38.4" fill="#E85D9E" fill-opacity="0.85"/>
+    <circle cx="-28.48" cy="-20.70" r="38.4" fill="#E85D9E" fill-opacity="0.85"/>
+    <circle cx="10.88" cy="-33.47" r="38.4" fill="#E85D9E" fill-opacity="0.85"/>
+    <circle cx="0" cy="0" r="22.4" fill="#FFFFFF"/>
+  </g>
+
+  <text x="222" y="102" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="800" fill="#F5F5F5" letter-spacing="2">BLOOM</text>
+  <text x="224" y="136" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="500" fill="#A1A1AA">Track. Save. Bloom.</text>
+</svg>
