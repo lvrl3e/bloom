@@ -43,7 +43,7 @@ class _RootShellState extends State<RootShell> {
         foregroundColor: Colors.white,
         child: const Icon(Icons.add_rounded, size: 28),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       bottomNavigationBar: NavigationBar(
         selectedIndex: _index,
         onDestinationSelected: (i) => setState(() => _index = i),
