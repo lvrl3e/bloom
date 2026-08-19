@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:uuid/uuid.dart';
+import '../database/dao_factory.dart';
 import '../database/transaction_dao.dart';
 import '../models/transaction_model.dart';
 import 'account_service.dart';
@@ -15,7 +16,7 @@ class TransactionService extends ChangeNotifier {
     required AccountService accountService,
     TransactionDao? dao,
   })  : _accountService = accountService,
-        _dao = dao ?? TransactionDao();
+        _dao = dao ?? createTransactionDao();
 
   List<MoneyTransaction> _transactions = [];
   bool _isLoading = true;

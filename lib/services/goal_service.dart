@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:uuid/uuid.dart';
+import '../database/dao_factory.dart';
 import '../database/goal_dao.dart';
 import '../models/goal_model.dart';
 
@@ -10,8 +11,8 @@ class GoalService extends ChangeNotifier {
   final _uuid = const Uuid();
 
   GoalService({GoalDao? dao, GoalContributionDao? contributionDao})
-      : _dao = dao ?? GoalDao(),
-        _contributionDao = contributionDao ?? GoalContributionDao();
+      : _dao = dao ?? createGoalDao(),
+        _contributionDao = contributionDao ?? createGoalContributionDao();
 
   List<Goal> _goals = [];
   bool _isLoading = true;

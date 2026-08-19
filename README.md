@@ -1,6 +1,6 @@
 ![BLOOM](assets/branding/bloom_logo.svg)
 
-BLOOM is a personal finance and financial goals app built with Flutter. It tracks bank/e-wallet accounts, income and expense transactions, and savings goals, all stored locally with SQLite. No bank passwords, PINs, OTPs, or credentials are ever requested — only balances you enter yourself.
+BLOOM is a personal finance and financial goals app built with Flutter. It tracks bank/e-wallet accounts, income and expense transactions, and savings goals. On native platforms (desktop/Android/iOS) data is stored locally with SQLite; on web it's in-memory only and resets on every reload (see [Web](#web) below). No bank passwords, PINs, OTPs, or credentials are ever requested — only balances you enter yourself.
 
 ## Running the app
 
@@ -14,6 +14,15 @@ flutter run -d windows
 The window opens at a phone-sized 420×900 to reflect the mobile-first layout. Standard hot reload workflow applies (`r` reload, `R` restart, `q` quit).
 
 To target Android/iOS instead, connect a device or emulator and run `flutter run` as usual — no platform-specific code changes are needed.
+
+## Web
+
+The web build swaps SQLite for an in-memory data layer (`lib/database/dao_factory.dart` picks the implementation per platform at compile time), since browsers have no filesystem for `sqflite`/`sqflite_common_ffi` to use. This means **web data does not persist** — every reload starts from a clean slate. That's intentional, not a bug.
+
+```
+flutter run -d chrome        # dev, with hot reload
+flutter build web --release  # static bundle in build/web/, e.g. for deploying to Vercel (see vercel.json)
+```
 
 ## Project structure
 

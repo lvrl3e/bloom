@@ -1,0 +1,35 @@
+{
+    "name": "BLOOM",
+    "short_name": "BLOOM",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#0D0D0F",
+    "theme_color": "#E85D9E",
+    "description": "BLOOM — a premium personal finance and financial goals app. Track. Save. Bloom.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}

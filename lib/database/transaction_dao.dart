@@ -1,45 +1,13 @@
 import '../models/transaction_model.dart';
-import 'database_helper.dart';
 
-class TransactionDao {
-  final DatabaseHelper _helper = DatabaseHelper.instance;
-
-  Future<List<MoneyTransaction>> getAll() async {
-    final db = await _helper.database;
-    final rows = await db.query('transactions', orderBy: 'date DESC, created_at DESC');
-    return rows.map(MoneyTransaction.fromMap).toList();
-  }
-
-  Future<List<MoneyTransaction>> getByAccount(String accountId) async {
-    final db = await _helper.database;
-    final rows = await db.query(
-      'transactions',
-      where: 'account_id = ? OR to_account_id = ?',
-      whereArgs: [accountId, accountId],
-      orderBy: 'date DESC, created_at DESC',
-    );
-    return rows.map(MoneyTransaction.fromMap).toList();
-  }
-
-  Future<MoneyTransaction?> getById(String id) async {
-    final db = await _helper.database;
-    final rows = await db.query('transactions', where: 'id = ?', whereArgs: [id]);
-    if (rows.isEmpty) return null;
-    return MoneyTransaction.fromMap(rows.first);
-  }
-
-  Future<void> insert(MoneyTransaction transaction) async {
-    final db = await _helper.database;
-    await db.insert('transactions', transaction.toMap());
-  }
-
-  Future<void> update(MoneyTransaction transaction) async {
-    final db = await _helper.database;
-    await db.update('transactions', transaction.toMap(), where: 'id = ?', whereArgs: [transaction.id]);
-  }
-
-  Future<void> delete(String id) async {
-    final db = await _helper.database;
-    await db.delete('transactions', where: 'id = ?', whereArgs: [id]);
-  }
+/// Storage contract for transactions. [createTransactionDao] picks the real
+/// implementation: SQLite on native platforms, in-memory on web (see
+/// `dao_factory.dart`).
+abstract class TransactionDao {
+  Future<List<MoneyTransaction>> getAll();
+  Future<List<MoneyTransaction>> getByAccount(String accountId);
+  Future<MoneyTransaction?> getById(String id);
+  Future<void> insert(MoneyTransaction transaction);
+  Future<void> update(MoneyTransaction transaction);
+  Future<void> delete(String id);
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:uuid/uuid.dart';
 import '../database/account_dao.dart';
+import '../database/dao_factory.dart';
 import '../models/account_model.dart';
 
 /// Owns the accounts list and their balances. Transaction/goal services
@@ -10,7 +11,7 @@ class AccountService extends ChangeNotifier {
   final AccountDao _dao;
   final _uuid = const Uuid();
 
-  AccountService({AccountDao? dao}) : _dao = dao ?? AccountDao();
+  AccountService({AccountDao? dao}) : _dao = dao ?? createAccountDao();
 
   List<Account> _accounts = [];
   bool _isLoading = true;
