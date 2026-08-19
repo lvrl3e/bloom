@@ -5,6 +5,7 @@ import 'services/goal_service.dart';
 import 'services/theme_service.dart';
 import 'services/transaction_service.dart';
 import 'theme/app_theme.dart';
+import 'widgets/loading_screen.dart';
 import 'widgets/root_shell.dart';
 
 void main() {
@@ -51,7 +52,38 @@ class _BloomMaterialApp extends StatelessWidget {
       themeMode: themeMode,
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
-      home: const RootShell(),
+      home: const _AppRoot(),
     );
+  }
+}
+
+/// Shows [LoadingScreen] until the initial account/transaction/goal load
+/// completes, then latches to [RootShell] for good — later reloads (e.g.
+/// pull-to-refresh) toggle each service's `isLoading` again, but that must
+/// not send the user back to a full-screen splash mid-session.
+class _AppRoot extends StatefulWidget {
+  const _AppRoot();
+
+  @override
+  State<_AppRoot> createState() => _AppRootState();
+}
+
+class _AppRootState extends State<_AppRoot> {
+  bool _ready = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final accountService = context.watch<AccountService>();
+    final txService = context.watch<TransactionService>();
+    final goalService = context.watch<GoalService>();
+
+    if (!_ready &&
+        !accountService.isLoading &&
+        !txService.isLoading &&
+        !goalService.isLoading) {
+      _ready = true;
+    }
+
+    return _ready ? const RootShell() : const LoadingScreen();
   }
 }
