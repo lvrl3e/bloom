@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'services/account_service.dart';
 import 'services/goal_service.dart';
+import 'services/theme_service.dart';
 import 'services/transaction_service.dart';
 import 'theme/app_theme.dart';
 import 'widgets/root_shell.dart';
@@ -18,6 +19,7 @@ class BloomApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider<ThemeService>(create: (_) => ThemeService()),
         ChangeNotifierProvider<AccountService>(
           create: (_) => AccountService()..load(),
         ),
@@ -32,14 +34,24 @@ class BloomApp extends StatelessWidget {
           create: (_) => GoalService()..load(),
         ),
       ],
-      child: MaterialApp(
-        title: 'BLOOM',
-        debugShowCheckedModeBanner: false,
-        themeMode: ThemeMode.dark,
-        theme: AppTheme.light,
-        darkTheme: AppTheme.dark,
-        home: const RootShell(),
-      ),
+      child: const _BloomMaterialApp(),
+    );
+  }
+}
+
+class _BloomMaterialApp extends StatelessWidget {
+  const _BloomMaterialApp();
+
+  @override
+  Widget build(BuildContext context) {
+    final themeMode = context.watch<ThemeService>().mode;
+    return MaterialApp(
+      title: 'BLOOM',
+      debugShowCheckedModeBanner: false,
+      themeMode: themeMode,
+      theme: AppTheme.light,
+      darkTheme: AppTheme.dark,
+      home: const RootShell(),
     );
   }
 }
