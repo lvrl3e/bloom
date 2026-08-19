@@ -11,6 +11,7 @@ import '../../widgets/app_snackbar.dart';
 import '../../widgets/confirm_dialog.dart';
 import '../../widgets/empty_state.dart';
 import '../../widgets/loading_view.dart';
+import '../../widgets/theme_toggle_button.dart';
 import '../../widgets/transaction_tile.dart';
 import 'add_transaction_sheet.dart';
 import 'transaction_filter_sheet.dart';
@@ -56,6 +57,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
             ),
             tooltip: 'Filter',
           ),
+          const ThemeToggleButton(),
         ],
       ),
       body: SafeArea(

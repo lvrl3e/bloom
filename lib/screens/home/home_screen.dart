@@ -5,7 +5,6 @@ import '../../models/transaction_model.dart';
 import '../../services/account_service.dart';
 import '../../services/analytics_service.dart';
 import '../../services/goal_service.dart';
-import '../../services/theme_service.dart';
 import '../../services/transaction_service.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_spacing.dart';
@@ -17,6 +16,7 @@ import '../../widgets/goal_card.dart';
 import '../../widgets/loading_view.dart';
 import '../../widgets/section_header.dart';
 import '../../widgets/stat_tile.dart';
+import '../../widgets/theme_toggle_button.dart';
 import '../../widgets/transaction_tile.dart';
 import '../accounts/accounts_screen.dart';
 import '../accounts/add_account_sheet.dart';
@@ -36,7 +36,6 @@ class HomeScreen extends StatelessWidget {
     final accountService = context.watch<AccountService>();
     final txService = context.watch<TransactionService>();
     final goalService = context.watch<GoalService>();
-    final themeService = context.watch<ThemeService>();
 
     final isLoading = accountService.isLoading || txService.isLoading || goalService.isLoading;
 
@@ -59,13 +58,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
         ),
-        actions: [
-          IconButton(
-            tooltip: themeService.isDark ? 'Switch to light mode' : 'Switch to dark mode',
-            icon: Icon(themeService.isDark ? Icons.light_mode_rounded : Icons.dark_mode_rounded),
-            onPressed: () => themeService.toggle(),
-          ),
-        ],
+        actions: const [ThemeToggleButton()],
       ),
       body: SafeArea(
         child: isLoading

@@ -8,6 +8,7 @@ import '../../utils/formatters.dart';
 import '../../widgets/empty_state.dart';
 import '../../widgets/goal_card.dart';
 import '../../widgets/loading_view.dart';
+import '../../widgets/theme_toggle_button.dart';
 import 'add_goal_sheet.dart';
 import 'goal_detail_screen.dart';
 
@@ -27,6 +28,7 @@ class GoalsScreen extends StatelessWidget {
             icon: const Icon(Icons.add_rounded),
             tooltip: 'New goal',
           ),
+          const ThemeToggleButton(),
         ],
       ),
       body: SafeArea(

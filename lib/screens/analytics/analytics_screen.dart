@@ -17,6 +17,7 @@ import '../../widgets/empty_state.dart';
 import '../../widgets/loading_view.dart';
 import '../../widgets/section_header.dart';
 import '../../widgets/stat_tile.dart';
+import '../../widgets/theme_toggle_button.dart';
 
 const _analytics = AnalyticsService();
 
@@ -32,7 +33,10 @@ class AnalyticsScreen extends StatelessWidget {
     final isLoading = accountService.isLoading || txService.isLoading || goalService.isLoading;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Analytics')),
+      appBar: AppBar(
+        title: const Text('Analytics'),
+        actions: const [ThemeToggleButton()],
+      ),
       body: SafeArea(
         child: isLoading
             ? const LoadingView()

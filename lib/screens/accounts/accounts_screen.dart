@@ -10,6 +10,7 @@ import '../../widgets/app_snackbar.dart';
 import '../../widgets/confirm_dialog.dart';
 import '../../widgets/empty_state.dart';
 import '../../widgets/loading_view.dart';
+import '../../widgets/theme_toggle_button.dart';
 import 'add_account_sheet.dart';
 
 class AccountsScreen extends StatelessWidget {
@@ -28,6 +29,7 @@ class AccountsScreen extends StatelessWidget {
             icon: const Icon(Icons.add_rounded),
             tooltip: 'Add account',
           ),
+          const ThemeToggleButton(),
         ],
       ),
       body: SafeArea(
